@@ -40,5 +40,13 @@ public class PedidoDAO {
 				.getResultList();
 		
 	}
+	public Pedido buscarPedidoComCliente(Long id) {
+//		JOIN Fetch nos ajuda a transformar uma tabela que está em lazy
+//		para eager, ou seja, ele nos devolve um valor usado pelo join que não
+//		era carregada no lazy.
+		return em.createQuery("select p from Pedido p join fetch where p.id = :id",Pedido.class)
+				.setParameter("id", id)
+				.getSingleResult();
+	}
 	
 }
