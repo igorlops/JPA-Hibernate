@@ -39,8 +39,8 @@ public class ProdutoDAO {
 				.getResultList();
 	}
 	public List<Produto> buscarPorNomeDaCategoria(String nome){
-		String jpql = "select p from Produto p where p.categoria.nome = :nome";
-		return em.createQuery(jpql,Produto.class)
+//		Exemplo de uso do named query do jpa
+		return em.createNamedQuery("Produto.produtosPorCategoria",Produto.class)
 				.setParameter("nome", nome)
 				.getResultList();
 	}
@@ -50,4 +50,6 @@ public class ProdutoDAO {
 				.setParameter("nome", nome)
 				.getSingleResult();
 	}
+	
+	
 }
